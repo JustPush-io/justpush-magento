@@ -1,0 +1,24 @@
+{
+    "event": "order.placed",
+    "version": 1,
+    "sent_at": "2026-09-30T14:29:28Z",
+    "store": {
+        "website": "Main Website",
+        "store_view": "Default Store View",
+        "url": "http://localhost:8081/"
+    },
+    "order": {
+        "increment_id": "000000012",
+        "grand_total": "108.00",
+        "currency": "EUR",
+        "customer_name": "Jane Doe",
+        "customer_email": "jane@example.com",
+        "is_guest": true,
+        "item_count": 2,
+        "payment_method": "Check / Money order",
+        "shipping_method": "Flat Rate - Fixed",
+        "status": "pending",
+        "source": "frontend",
+        "admin_url": "http://localhost:8081/admin/sales/order/view/order_id/12/"
+    }
+}

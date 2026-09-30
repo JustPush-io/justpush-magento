@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Own log file: var/log/justpush.log -->
+    <virtualType name="JustPush\Notify\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/justpush.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="JustPush\Notify\Logger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">justpush</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="file" xsi:type="object">JustPush\Notify\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Backend URL model is only built when a payload needs an admin link -->
+    <type name="JustPush\Notify\Model\PayloadBuilder">
+        <arguments>
+            <argument name="backendUrl" xsi:type="object">Magento\Backend\Model\UrlInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="JustPush\Notify\Model\Publisher">
+        <arguments>
+            <argument name="logger" xsi:type="object">JustPush\Notify\Logger</argument>
+        </arguments>
+    </type>
+    <type name="JustPush\Notify\Model\Sender">
+        <arguments>
+            <argument name="logger" xsi:type="object">JustPush\Notify\Logger</argument>
+        </arguments>
+    </type>
+    <type name="JustPush\Notify\Model\Consumer">
+        <arguments>
+            <argument name="logger" xsi:type="object">JustPush\Notify\Logger</argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- Global area: frontend, adminhtml, webapi_rest, webapi_soap, graphql and cron all see these. -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_model_service_quote_submit_success">
+        <observer name="justpush_order_placed" instance="JustPush\Notify\Observer\OrderPlaced"/>
+    </event>
+    <!-- Multishipping only; the observer ignores the single-order form of this event -->
+    <event name="checkout_submit_all_after">
+        <observer name="justpush_order_placed" instance="JustPush\Notify\Observer\OrderPlaced"/>
+    </event>
+    <event name="sales_order_invoice_pay">
+        <observer name="justpush_invoice_paid" instance="JustPush\Notify\Observer\InvoicePaid"/>
+    </event>
+    <event name="sales_order_invoice_save_after">
+        <observer name="justpush_invoice_paid" instance="JustPush\Notify\Observer\InvoicePaid"/>
+    </event>
+    <event name="sales_order_creditmemo_refund">
+        <observer name="justpush_order_refunded" instance="JustPush\Notify\Observer\OrderRefunded"/>
+    </event>
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="justpush_order_refunded" instance="JustPush\Notify\Observer\OrderRefunded"/>
+    </event>
+    <event name="customer_save_after_data_object">
+        <observer name="justpush_customer_registered" instance="JustPush\Notify\Observer\CustomerRegistered"/>
+    </event>
+</config>

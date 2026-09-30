@@ -1,0 +1,17 @@
+{
+    "event": "customer.registered",
+    "version": 1,
+    "sent_at": "2026-09-30T14:29:28Z",
+    "store": {
+        "website": "Main Website",
+        "store_view": "Default Store View",
+        "url": "http://localhost:8081/"
+    },
+    "customer": {
+        "name": "Jane Doe",
+        "email": "jane.doe@example.com",
+        "group": "General",
+        "source": "frontend",
+        "admin_url": "http://localhost:8081/admin/customer/index/edit/id/5/"
+    }
+}

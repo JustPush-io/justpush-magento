@@ -1,0 +1,47 @@
+<?php
+/**
+ * Copyright © JustPush. MIT License.
+ *
+ * @var \JustPush\Notify\Block\Adminhtml\System\Config\TestButton $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+$elementId = (string)$block->getData('html_id');
+$note = __('Sends a test.ping to every saved URL. Save the configuration first.');
+?>
+<button type="button" class="action-default" id="<?= $escaper->escapeHtmlAttr($elementId) ?>">
+    <span><?= $escaper->escapeHtml(__('Send test')) ?></span>
+</button>
+<div id="<?= $escaper->escapeHtmlAttr($elementId) ?>_result" class="message no-display"></div>
+<p class="note"><span><?= $escaper->escapeHtml($note) ?></span></p>
+<?php
+$htmlId = $escaper->escapeJs($elementId);
+$sendUrl = $escaper->escapeJs($block->getSendUrl());
+$script = <<<SCRIPT
+require(['jquery'], function ($) {
+    var button = $('#{$htmlId}'), result = $('#{$htmlId}_result');
+    result.css({marginTop: '10px', whiteSpace: 'pre-line'});
+    button.on('click', function () {
+        button.prop('disabled', true);
+        result.addClass('no-display');
+        $.ajax({
+            url: '{$sendUrl}',
+            type: 'POST',
+            dataType: 'json',
+            data: {form_key: window.FORM_KEY},
+            showLoader: true
+        }).done(function (response) {
+            result.removeClass('message-success message-error')
+                .addClass(response.success ? 'message-success' : 'message-error')
+                .text(response.message).removeClass('no-display');
+        }).fail(function () {
+            result.removeClass('message-success').addClass('message-error')
+                .text('The test request failed. See var/log/justpush.log.').removeClass('no-display');
+        }).always(function () {
+            button.prop('disabled', false);
+        });
+    });
+});
+SCRIPT;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $script, false) ?>

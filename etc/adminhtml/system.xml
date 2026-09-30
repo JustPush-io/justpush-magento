@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="justpush" translate="label" sortOrder="900" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>JustPush</label>
+            <tab>service</tab>
+            <resource>JustPush_Notify::config</resource>
+            <group id="general" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>General</label>
+                <comment><![CDATA[Sends store events to <a href="https://justpush.app" target="_blank" rel="noopener">JustPush Studio</a>, which turns them into push notifications. Install a Magento recipe in Studio and paste its webhook URL below.]]></comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="send_immediately" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Send immediately (no cron)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Leave this at <strong>No</strong> when cron works. Events then go through the <code>justpush.notify</code> message queue and never slow down checkout. <strong>Yes</strong> sends them during the request, with a 2-second limit. Use it only when cron isn't running.]]></comment>
+                </field>
+            </group>
+            <group id="webhooks" translate="label comment" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Webhook URLs</label>
+                <comment>One URL per event, copied from the matching JustPush Studio recipe. Leave a field empty to turn that event off.</comment>
+                <field id="order_placed" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Order placed</label>
+                    <comment>Every new order: storefront, admin, REST and GraphQL.</comment>
+                    <validate>validate-url</validate>
+                </field>
+                <field id="invoice_paid" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Invoice paid</label>
+                    <comment>When payment for an invoice is captured.</comment>
+                    <validate>validate-url</validate>
+                </field>
+                <field id="order_refunded" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Order refunded</label>
+                    <comment>Once per credit memo.</comment>
+                    <validate>validate-url</validate>
+                </field>
+                <field id="customer_registered" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Customer registered</label>
+                    <comment>New customer accounts, from the storefront, the admin or the API.</comment>
+                    <validate>validate-url</validate>
+                </field>
+                <field id="admin_login" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Admin login</label>
+                    <comment>Successful and failed admin logins. Failed logins are sent at most once per 15 minutes per username. Admin logins don't belong to a website, so this is set at Default Config only.</comment>
+                    <validate>validate-url</validate>
+                </field>
+                <field id="send_test" translate="label" type="button" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Send test</label>
+                    <frontend_model>JustPush\Notify\Block\Adminhtml\System\Config\TestButton</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

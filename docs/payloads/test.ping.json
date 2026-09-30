@@ -1,0 +1,11 @@
+{
+    "event": "test.ping",
+    "version": 1,
+    "sent_at": "2026-09-30T14:29:13Z",
+    "store": {
+        "website": "Main Website",
+        "store_view": "Default Store View",
+        "url": "http://localhost:8081/"
+    },
+    "message": "Test from Magento"
+}

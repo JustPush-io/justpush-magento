@@ -1,0 +1,16 @@
+{
+    "event": "admin.login",
+    "version": 1,
+    "sent_at": "2026-09-30T14:29:28Z",
+    "store": {
+        "website": "Main Website",
+        "store_view": "Default Store View",
+        "url": "http://localhost:8081/"
+    },
+    "admin": {
+        "username": "john.smith",
+        "name": "John Smith",
+        "ip": "172.18.0.1",
+        "admin_url": "http://localhost:8081/admin/admin/user/edit/user_id/1/"
+    }
+}

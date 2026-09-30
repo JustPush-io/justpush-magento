@@ -1,0 +1,18 @@
+{
+    "event": "invoice.paid",
+    "version": 1,
+    "sent_at": "2026-09-30T14:29:28Z",
+    "store": {
+        "website": "Main Website",
+        "store_view": "Default Store View",
+        "url": "http://localhost:8081/"
+    },
+    "invoice": {
+        "increment_id": "000000003",
+        "order_increment_id": "000000012",
+        "grand_total": "108.00",
+        "currency": "EUR",
+        "customer_name": "Jane Doe",
+        "admin_url": "http://localhost:8081/admin/sales/invoice/view/invoice_id/3/"
+    }
+}
