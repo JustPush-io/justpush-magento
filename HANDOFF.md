@@ -24,7 +24,7 @@ the same way the WordPress recipes ship a must-use plugin.
 
 | Question | Decision | Why |
 | --- | --- | --- |
-| How it's distributed | A Composer package: `composer require justpush/module-notify` then `bin/magento setup:upgrade`. Name it `justpush/module-notify` (Magento's `vendor/module-name` convention) with module `JustPush_Notify`. Also support copying it to `app/code/JustPush/Notify/`. | Too many files to paste into a recipe's INSTALL.md. |
+| How it's distributed | A Composer package: `composer require justpush/magento-module-notify` then `bin/magento setup:upgrade`. Name it `justpush/magento-module-notify` (Magento's `vendor/module-name` convention) with module `JustPush_Notify`. Also support copying it to `app/code/JustPush/Notify/`. | Too many files to paste into a recipe's INSTALL.md. |
 | Sending | **Async.** Observers only publish a message to a MySQL-backed message queue (`db` connection, so no RabbitMQ needed). A consumer sends the HTTP request. Magento's `consumers_runner` cron starts consumers by default, so the only requirement is working cron, which Magento needs anyway. | JustPush being slow or down must never slow down or break checkout. |
 | Queue fallback | A config switch "Send immediately (no cron)" that POSTs inline with a **2 s total timeout** inside `try/catch (\Throwable)`. | For shops with broken cron. Off by default. |
 | Configuration | **Stores → Configuration → Services → JustPush**: an Enabled switch, one "Webhook URL" field per event (empty means off), website scope. Add a **Send test** button that POSTs `test.ping` to every filled-in URL. | Each Studio recipe is its own integration with its own URL. |

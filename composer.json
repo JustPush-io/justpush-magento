@@ -1,5 +1,5 @@
 {
-    "name": "justpush/module-notify",
+    "name": "justpush/magento-module-notify",
     "description": "Sends Magento 2 store events (orders, invoices, refunds, new customers, admin logins) to JustPush Studio as push notifications.",
     "type": "magento2-module",
     "license": "MIT",

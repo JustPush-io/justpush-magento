@@ -1,5 +1,5 @@
 # Run from a Magento root that has this module installed:
-#   vendor/bin/phpstan analyse -c vendor/justpush/module-notify/phpstan.neon.dist
+#   vendor/bin/phpstan analyse -c vendor/justpush/magento-module-notify/phpstan.neon.dist
 parameters:
     level: 6
     paths:

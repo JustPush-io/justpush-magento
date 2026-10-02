@@ -18,7 +18,7 @@ event. A Magento recipe in Studio turns that message into a push notification.
 With Composer (recommended):
 
 ```bash
-composer require justpush/module-notify
+composer require justpush/magento-module-notify
 bin/magento module:enable JustPush_Notify
 bin/magento setup:upgrade
 bin/magento setup:di:compile        # production mode only
@@ -150,15 +150,15 @@ or payment details.
 ## Development
 
 ```bash
-vendor/bin/phpcs --standard=Magento2 --extensions=php,phtml vendor/justpush/module-notify
-vendor/bin/phpstan analyse -c vendor/justpush/module-notify/phpstan.neon.dist
+vendor/bin/phpcs --standard=Magento2 --extensions=php,phtml vendor/justpush/magento-module-notify
+vendor/bin/phpstan analyse -c vendor/justpush/magento-module-notify/phpstan.neon.dist
 ```
 
 ## Uninstall
 
 ```bash
 bin/magento module:disable JustPush_Notify
-composer remove justpush/module-notify
+composer remove justpush/magento-module-notify
 bin/magento setup:upgrade
 ```
 
