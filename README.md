@@ -1,9 +1,11 @@
+<p align="center"><img src="https://cdn.justpush.io/core/app%20icon_nobackground.svg" width="120" height="auto"></p>
+
 # JustPush for Magento 2
 
 Get a push notification on your phone when something happens in your Magento shop: a new
 order, a paid invoice, a refund, a new customer or an admin login.
 
-This module sends a small JSON message to [JustPush Studio](https://justpush.app) for each
+This module sends a small JSON message to [JustPush Studio](https://studio.justpush.io) for each
 event. A Magento recipe in Studio turns that message into a push notification.
 
 - Works on Magento Open Source and Adobe Commerce **2.4.6 and later**, with the PHP versions
